@@ -10,7 +10,14 @@ class CopyrightWebpackPlugin {
     // @see https://webpack.js.org/api/compiler-hooks/#emit
     // compilation存放了和这次打包相关的内容
     compiler.hooks.emit.tapAsync('CopyrightWebpackPlugin', (compilation, cb) => {
-      console.log('-------emit hook------', compilation.assets);
+      compilation.assets['copyright.txt'] = {
+        source: function() {
+          return 'copyright by shenwl';
+        },
+        size: function() {
+          return 19;
+        }
+      }
       cb();
     });
   }
