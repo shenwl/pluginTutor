@@ -1,4 +1,5 @@
 const path = require('path');
+const CopyRightWebpackPlugin = require('./plugins/copyright-webpack-plugin');
 
 module.exports = {
   mode: 'development',
@@ -9,4 +10,7 @@ module.exports = {
     path: path.resolve(__dirname, "./dist"),
     filename: "[name].js",
   },
+  plugins: [
+    new CopyRightWebpackPlugin({name: "CopyRight插件"}),
+  ]
 }
