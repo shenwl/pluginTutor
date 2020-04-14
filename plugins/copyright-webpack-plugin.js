@@ -6,7 +6,11 @@ class CopyrightWebpackPlugin {
   // compiler可以理解为webpack的一个实例
   // 打包所有相关内容都在compiler存放
   apply(compiler) {
-    // emit hook
+    // 同步的hook
+    compiler.hooks.compile.tap('CopyrightWebpackPlugin', (compilation) => {
+      console.log('-----compile-----');
+    });
+    // emit hook 是异步的hook
     // @see https://webpack.js.org/api/compiler-hooks/#emit
     // compilation存放了和这次打包相关的内容
     compiler.hooks.emit.tapAsync('CopyrightWebpackPlugin', (compilation, cb) => {
